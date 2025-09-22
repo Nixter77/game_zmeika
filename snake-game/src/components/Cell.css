@@ -1,0 +1,33 @@
+.cell {
+  width: 20px;
+  height: 20px;
+  background-color: transparent;
+  border: 1px solid rgba(0, 240, 255, 0.1);
+}
+
+.snake {
+  background-color: #00f0ff;
+  box-shadow: 0 0 10px #00f0ff;
+}
+
+.food {
+  background-color: #f800ff;
+  box-shadow: 0 0 10px #f800ff;
+  border-radius: 50%;
+  animation: pulse-food 1s infinite;
+}
+
+@keyframes pulse-food {
+  0% {
+    transform: scale(1);
+    box-shadow: 0 0 10px #f800ff;
+  }
+  50% {
+    transform: scale(1.1);
+    box-shadow: 0 0 20px #f800ff;
+  }
+  100% {
+    transform: scale(1);
+    box-shadow: 0 0 10px #f800ff;
+  }
+}
