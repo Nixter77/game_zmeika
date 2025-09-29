@@ -31,6 +31,14 @@ function Game() {
   const [snake, setSnake] = useState(initialSnake);
   const [food, setFood] = useState(getRandomFood(initialSnake));
   const [score, setScore] = useState(0);
+  const [highScore, setHighScore] = useState(() => {
+    try {
+      const v = localStorage.getItem('cyber-snake-highscore');
+      return v ? Number(v) : 0;
+    } catch (e) {
+      return 0;
+    }
+  });
   const [gameOver, setGameOver] = useState(false);
   const direction = useRef('RIGHT');
 
@@ -50,6 +58,16 @@ function Game() {
     direction.current = 'RIGHT';
     setGameOver(false);
   };
+
+  // Save high score when it changes
+  useEffect(() => {
+    if (score > highScore) {
+      setHighScore(score);
+      try {
+        localStorage.setItem('cyber-snake-highscore', String(score));
+      } catch (e) {}
+    }
+  }, [score, highScore]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -87,7 +105,7 @@ function Game() {
 
   useEffect(() => {
     if (gameOver) {
-      gameOverSound.current.play().catch(e => console.log("Error playing sound:", e));
+      gameOverSound.current.play().catch(e => console.warn("Error playing sound:", e));
       return;
     }
 
@@ -113,7 +131,7 @@ function Game() {
 
       const newSnake = [newHead, ...snake];
       if (newHead.x === food.x && newHead.y === food.y) {
-        eatSound.current.play().catch(e => {});
+  eatSound.current.play().catch(e => console.warn('Error playing eat sound', e));
         setFood(getRandomFood(newSnake));
         setScore(prevScore => prevScore + 10);
       } else {
@@ -137,8 +155,14 @@ function Game() {
       ) : (
         <>
           <div className="game-header">
-            <h1>Cyber Snake</h1>
-            <div className="score">Score: {score}</div>
+            <div className="title-wrap">
+              <h1>Cyber Snake</h1>
+              <div className="subtitle">Neon retro-future</div>
+            </div>
+            <div className="hud">
+              <div className="score">Score: <span className="score-val">{score}</span></div>
+              <div className="highscore">High: <span className="high-val">{highScore}</span></div>
+            </div>
           </div>
           <Board snake={snake} food={food} boardSize={BOARD_SIZE} />
         </>

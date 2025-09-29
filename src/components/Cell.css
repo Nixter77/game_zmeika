@@ -1,33 +1,8 @@
-.cell {
-  width: 20px;
-  height: 20px;
-  background-color: transparent;
-  border: 1px solid rgba(0, 240, 255, 0.1);
-}
+.cell{width:22px;height:22px;background:transparent;border-radius:6px;display:block;box-sizing:border-box;border:1px solid rgba(255,255,255,0.03);backdrop-filter: blur(4px);}
+.cell.empty{background:linear-gradient(180deg, rgba(0,0,0,0.2), rgba(255,255,255,0.01));}
+.cell.snake{background:linear-gradient(180deg, rgba(0,240,255,0.12), rgba(0,240,255,0.06));box-shadow:0 6px 18px rgba(0,240,255,0.06);border:1px solid rgba(0,240,255,0.14)}
+.cell.snake.head{background:linear-gradient(90deg, #00f0ff, #8affff);box-shadow: 0 0 18px rgba(0,240,255,0.28), 0 6px 30px rgba(0,240,255,0.06);transform:rotate(-8deg);border:1px solid rgba(255,255,255,0.2)}
+.cell.food{background:linear-gradient(90deg,#ff3bd6,#ff7bba);box-shadow:0 0 22px rgba(255,59,214,0.24);border-radius:50%;animation:pulse-food 1000ms infinite}
 
-.snake {
-  background-color: #00f0ff;
-  box-shadow: 0 0 10px #00f0ff;
-}
+@keyframes pulse-food{0%{transform:scale(1);box-shadow:0 0 12px rgba(255,59,214,0.14)}50%{transform:scale(1.12);box-shadow:0 0 28px rgba(255,59,214,0.26)}100%{transform:scale(1);box-shadow:0 0 12px rgba(255,59,214,0.14)}}
 
-.food {
-  background-color: #f800ff;
-  box-shadow: 0 0 10px #f800ff;
-  border-radius: 50%;
-  animation: pulse-food 1s infinite;
-}
-
-@keyframes pulse-food {
-  0% {
-    transform: scale(1);
-    box-shadow: 0 0 10px #f800ff;
-  }
-  50% {
-    transform: scale(1.1);
-    box-shadow: 0 0 20px #f800ff;
-  }
-  100% {
-    transform: scale(1);
-    box-shadow: 0 0 10px #f800ff;
-  }
-}

@@ -1,7 +1,16 @@
-.board {
-  display: grid;
-  grid-template-columns: repeat(20, 20px);
-  grid-template-rows: repeat(20, 20px);
-  border: 2px solid #00f0ff;
-  box-shadow: 0 0 20px #00f0ff;
+.board{
+  display:grid;
+  grid-template-columns: repeat(20, 22px);
+  grid-template-rows: repeat(20, 22px);
+  gap:2px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  padding:10px;
+  border-radius:14px;
+  border:1px solid rgba(0,240,255,0.08);
+  box-shadow: 0 8px 40px rgba(0,0,0,0.6), 0 0 40px rgba(0,240,255,0.06) inset;
 }
+
+@media (max-width:520px){
+  .board{transform:scale(0.85)}
+}
+
